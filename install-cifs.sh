@@ -8,18 +8,18 @@ read -p "Enter groupname: " mygroup
 apt install cifs-utils
 
 # mounting srv1
-if ! [ -d /mnt/srv1 ]
+if ! [ -d /srv1 ]
 then
-	echo add /mnt/srv/
-        mkdir /mnt/srv1
+	echo add /srv1
+        mkdir /srv1
 else
-	echo /mnt/srv/ already there
+	echo /srv1 already there
 fi
 
-if !  grep -q "/mnt/srv1" /etc/fstab
+if !  grep -q "/srv1" /etc/fstab
 then
 	echo add entry to fstab
-	echo "//srv1/linux /mnt/srv1 cifs rw,noauto,uid=$myuser,gid=$mygroup,username=linuxclient 0 0" >> /etc/fstab
+	echo "//srv1/linux /srv1 cifs rw,noauto,uid=$myuser,gid=$mygroup,username=linuxclient 0 0" >> /etc/fstab
 
 else
 	echo fstab already served
