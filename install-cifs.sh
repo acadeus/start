@@ -1,5 +1,8 @@
 #!/bin/sh
 
+read -p "Enter username: " myuser
+read -p "Enter groupname: " mygroup
+
 
 # install needed packages
 apt install cifs-utils
@@ -16,7 +19,7 @@ fi
 if !  grep -q "/mnt/srv1" /etc/fstab
 then
 	echo add entry to fstab
-	echo "//srv1/linux /mnt/srv1 cifs rw,noauto,user,username=linuxclient 0 0" >> /etc/fstab
+	echo "//srv1/linux /mnt/srv1 cifs rw,noauto,uid=$myuser,gid=$mygroup,username=linuxclient 0 0" >> /etc/fstab
 
 else
 	echo fstab already served
